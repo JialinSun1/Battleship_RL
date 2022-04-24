@@ -325,26 +325,26 @@ def sample_run():
 if __name__ == "__main__":
     env = gym.make('Battleship-v0', reward_dictionary=
     {'win':0, 'missed': -10, 'touched': 5})
-    # a1 = ActorCritic_Batch(env)
-    # state = env.reset()
-    # r1, s1 = a1.run(episode=2000)
+    a1 = ActorCritic_Batch(env)
+    state = env.reset()
+    r1, s1 = a1.run(episode=2000)
 
-    # print(sum(s1) / len(s1))
+    print(sum(s1) / len(s1))
 
-    # #Save the network weight
-    # torch.save(a1.actor.state_dict(), "./actor")
-    # torch.save(a1.critic.state_dict(), "./critic")
+    #Save the network weight
+    torch.save(a1.actor.state_dict(), "./actor")
+    torch.save(a1.critic.state_dict(), "./critic")
 
     a2 = AttackerDQN(env, epsilon=.2)
     state = env.reset()
     r2, s2 = a2.run(episode=5000)
 
     print(sum(s2) / len(s2))
-    # plt.plot(r1)
+    plt.plot(r1)
     plt.plot(r2)
-    # plt.show()
+    plt.show()
 
-    # plt.plot(s1)
+    plt.plot(s1)
     plt.plot(s2)
     plt.show()
     #Save the network weight
